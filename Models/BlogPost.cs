@@ -1,0 +1,17 @@
+namespace project_backend.Models;
+
+public class BlogPost
+{
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public string Author { get; set; }
+    public string Content { get; set; }
+    public string Avatar { get; set; }
+    public int Likes { get; set; }
+    public Comments[]? Comments { get; set; } 
+}
+public class Comments
+{
+    public string User { get; set; }
+    public string Reply { get; set; }
+}
