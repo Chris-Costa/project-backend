@@ -33,6 +33,15 @@ public static class ExerciseService
 
         Exercises.Remove(exercise);
     }
+
+    public static void Update(Exercise exercise)
+    {
+        var index = Exercises.FindIndex(e => e.Id == exercise.Id);
+        if(index == -1)
+            return;
+
+        Exercises[index] = exercise;
+    }
 }
 /*
 public Exercise[] GetAll(ApiVersion version, int user_id)

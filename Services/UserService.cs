@@ -10,8 +10,8 @@ public static class UserService
     {
         Users = new List<User>
         {
-            new User { Id = 1, Firstname = "FirstName", Lastname = "LastName", Username = "UserName", Avatar = "", WeightGoal = 180, LikedPosts = [1, 2], Workouts = [{Title = "Workout 1", Lifts = [{Name = "Lift 1", Weight = 45, Sets = 4, Reps = 15}, {Name = "Lift 2", Weight = 75, Sets = 3, Reps = 12}]}, {Title = "Workout 2", Lifts = [{Name = "Lift 1", Weight = 45, Sets = 4, Reps = 15}, {Name = "Lift 2", Weight = 75, Sets = 3, Reps = 12}]}] },
-            new User { Id = 2, Firstname = "FirstName2", Lastname = "LastName2", Username = "UserName2", Avatar = "", WeightGoal = 122, LikedPosts = [1], Workouts = [{Title = "Workout 1", Lifts = [{Name = "Lift 1", Weight = 45, Sets = 4, Reps = 15}, {Name = "Lift 2", Weight = 75, Sets = 3, Reps = 12}]}, {Title = "Workout 2", Lifts = [{Name = "Lift 1", Weight = 45, Sets = 4, Reps = 15}, {Name = "Lift 2", Weight = 75, Sets = 3, Reps = 12}]}] }
+            new User { Id = 1, Firstname = "FirstName", Lastname = "LastName", Username = "UserName", Avatar = "", WeightGoal = 180/*, LikedPosts = [1, 2], Workouts = [{Title = "Workout 1", Lifts = [{Name = "Lift 1", Weight = 45, Sets = 4, Reps = 15}, {Name = "Lift 2", Weight = 75, Sets = 3, Reps = 12}]}, {Title = "Workout 2", Lifts = [{Name = "Lift 1", Weight = 45, Sets = 4, Reps = 15}, {Name = "Lift 2", Weight = 75, Sets = 3, Reps = 12}]}] */},
+            new User { Id = 2, Firstname = "FirstName2", Lastname = "LastName2", Username = "UserName2", Avatar = "", WeightGoal = 122/*, LikedPosts = [1]/*, Workouts = [{Title = "Workout 1", Lifts = [{Name = "Lift 1", Weight = 45, Sets = 4, Reps = 15}, {Name = "Lift 2", Weight = 75, Sets = 3, Reps = 12}]}, {Title = "Workout 2", Lifts = [{Name = "Lift 1", Weight = 45, Sets = 4, Reps = 15}, {Name = "Lift 2", Weight = 75, Sets = 3, Reps = 12}]}] */}
         };
     }
 
@@ -32,5 +32,14 @@ public static class UserService
             return;
 
         Users.Remove(user);
+    }
+
+    public static void Update(User user)
+    {
+        var index = Users.FindIndex(u => u.Id == user.Id);
+        if(index == -1)
+            return;
+
+        Users[index] = user;
     }
 }

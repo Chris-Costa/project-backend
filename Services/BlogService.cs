@@ -10,8 +10,8 @@ public static class BlogService
     {
         Blogs = new List<Blog>
         {
-            new Blog { Id = 1, Title = "Test 1", Author = "Author 1",  Content = "Some Content 1", Avatar = "", Likes = 10, Comments = {user = "User 1", Reply = "Some reply 1"} },
-            new Blog { Id = 2, Title = "Test 2", Author = "Author 2", Content = "Some Content 2", Avatar = "", Likes = 5, Comments = {user = "User 2", Reply = "Some reply 2"} }
+            new Blog { Id = 1, Title = "Test 1", Author = "Author 1",  Content = "Some Content 1", Avatar = "", Likes = 10/*, Comments = {User = "User 1", Reply = "Some reply 1"}*/ },
+            new Blog { Id = 2, Title = "Test 2", Author = "Author 2", Content = "Some Content 2", Avatar = "", Likes = 5/*, Comments = {User = "User 2", Reply = "Some reply 2"}*/ }
         };
     }
 
