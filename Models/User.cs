@@ -11,15 +11,3 @@ public class User
     public int[]? LikedPosts { get; set; }
     public Workout[]? Workouts { get; set; }
 }
-public class Workout
-{
-    public string? Title { get; set; }
-    public Lifts[]? Lifts { get; set; }
-}
-public class Lifts
-{
-    public string? Name { get; set; }
-    public int Weight { get; set; }  //int|string
-    public int? Sets { get; set; }
-    public int? Reps { get; set; }
-}   

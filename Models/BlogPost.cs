@@ -10,8 +10,3 @@ public class Blog
     public int Likes { get; set; }
     public Comments[]? Comments { get; set; }
 }
-public class Comments
-{
-    public string User { get; set; }
-    public string Reply { get; set; }
-}
