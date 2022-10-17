@@ -8,5 +8,5 @@ public class Blog
     public string? Content { get; set; }
     public string? Avatar { get; set; }
     public int Likes { get; set; }
-    public Comments[]? Comments { get; set; }
+    //public Comments[]? Comments { get; set; }
 }
