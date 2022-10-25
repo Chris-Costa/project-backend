@@ -8,7 +8,5 @@ public class User
     public string? Username { get; set; }
     public string? Avatar { get; set; }
     public int WeightGoal { get; set; }
-    //public int[]? LikedPosts { get; set; }
     public List<Workout> Workouts { get; } = new();
-    //public Workout[]? Workouts { get; set; }
 }
