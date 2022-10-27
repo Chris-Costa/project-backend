@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<CVFitContext>(
-    dbContextOptions => dbContextOptions.UseSqlite("Data Source=CVFit.db"));
+    dbContextOptions => dbContextOptions.UseSqlite(builder.Configuration["ConnectionStrings:CVFitDBConnectionString"]));
 
 var app = builder.Build();
 

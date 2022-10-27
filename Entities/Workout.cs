@@ -8,9 +8,14 @@ namespace project_backend.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]  //generate new key when blog post is added
-        public Guid Id { get; set; }
-        //public int UserID { get; set; }
+        public int Id { get; set; }
         public string? Title { get; set; }
-        public List<Lift> Lifts { get; } = new();
+        //public List<Lift> Lifts { get; } = new();
+        public ICollection<Lift> Lifts { get; set; }
+               = new List<Lift>();
+
+        [ForeignKey("UserId")]
+        public User? User { get; set; }
+        public int UserId { get; set; }
     }
 }

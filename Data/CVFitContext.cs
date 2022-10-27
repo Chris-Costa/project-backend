@@ -50,6 +50,36 @@ namespace project_backend.Data
                     Likes=12
                 });
 
+            modelBuilder.Entity<Comment>().HasData(
+                new Comment()
+                { 
+                    Id=1,
+                    BlogId=1,
+                    User="Alexander",
+                    Reply="Generic Reply"
+                },
+                new Comment()
+                { 
+                    Id=2,
+                    BlogId=1,
+                    User="Sam",
+                    Reply="Generic Reply"
+                },
+                new Comment()
+                { 
+                    Id=3,
+                    BlogId=2,
+                    User="Peter",
+                    Reply="Generic Reply"
+                },
+                new Comment()
+                { 
+                    Id=4,
+                    BlogId=3,
+                    User="Jeremy",
+                    Reply="Generic Reply"
+                });
+
             modelBuilder.Entity<Exercise>().HasData(
                 new Exercise()
                 {
@@ -84,6 +114,38 @@ namespace project_backend.Data
                     ImageURL="x",
                     VideoURL="x"
                 });
+            /*
+            modelBuilder.Entity<Lift>().HasData(
+                new Lift()
+                {
+                    Id=1,
+                    WorkoutId=1,
+                    UserId=1,
+                    Name="Flys",
+                    Weight=45,
+                    Sets=4,
+                    Reps=12
+                },
+                new Lift()
+                {
+                    Id=2,
+                    WorkoutId=1,
+                    UserId=1,
+                    Name="Chest Press",
+                    Weight=145,
+                    Sets=4,
+                    Reps=12
+                },
+                new Lift()
+                {
+                    Id=3,
+                    WorkoutId=1,
+                    UserId=1,
+                    Name="Push Ups",
+                    Weight=0,
+                    Sets=4,
+                    Reps=20
+                });*/
             
             modelBuilder.Entity<User>().HasData(
                 new User()
@@ -112,6 +174,50 @@ namespace project_backend.Data
                     Username="CLong498",
                     Avatar="x",
                     WeightGoal=115
+                });
+
+            modelBuilder.Entity<Workout>().HasData(
+                new Workout()
+                {
+                    Id=1,
+                    UserId=1,
+                    Title="Full Body Day"
+                },
+                new Workout()
+                {
+                    Id=2,
+                    UserId=1,
+                    Title="Leg Day"
+                },
+                new Workout()
+                {
+                    Id=3,
+                    UserId=2,
+                    Title="Chest"
+                },
+                new Workout()
+                {
+                    Id=4,
+                    UserId=2,
+                    Title="Armd"
+                },
+                new Workout()
+                {
+                    Id=5,
+                    UserId=2,
+                    Title="Back & Bi's"
+                },
+                new Workout()
+                {
+                    Id=6,
+                    UserId=3,
+                    Title="FullBody"
+                },
+                new Workout()
+                {
+                    Id=7,
+                    UserId=3,
+                    Title="Cardio and Abs"
                 });
 
             base.OnModelCreating(modelBuilder);
