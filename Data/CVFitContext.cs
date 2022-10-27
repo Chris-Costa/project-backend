@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using project_backend.Models;
+using project_backend.Entities;
 
 namespace project_backend.Data
 {
@@ -13,17 +13,28 @@ namespace project_backend.Data
 
         public string DbPath { get; }
 
+        public CVFitContext(DbContextOptions<CVFitContext> options)
+            :base(options)
+        {
+
+        }
+        /*
         public CVFitContext()
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
             DbPath = System.IO.Path.Join(path, "blogging.db");
         }
-        
         // The following configures EF to create a Sqlite database file in the special "local" folder for your platform.
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source={DbPath}");
-        
-        
+        */
+        /*
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("connectionstring");
+            base.OnConfiguring(optionsBuilder);
+        }
+        */
     }
 }
