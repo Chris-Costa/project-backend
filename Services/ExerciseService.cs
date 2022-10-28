@@ -43,26 +43,3 @@ public static class ExerciseService
         Exercises[index] = exercise;
     }
 }
-/*
-public Exercise[] GetAll(ApiVersion version, int user_id)
-        {
-            var exercises = _context.exercises.Where(e => e.User_id == user_id).Select(e => new Exercise()
-            {
-                Id = e.Id,
-                Name = e.Name,
-                MuscleGroup = e.MuscleGroup,
-                Description = e.Description,
-                RepRange = e.RepRange,
-                Difficulty = e.Difficulty,
-                ImageURL = e.ImageURL,
-                VideoURL = e.VideoURL
-            }).OrderBy(e => e.Id).ToArray();
-
-            foreach(Exercise x in exercises)
-            {
-                x.Link = LinkService.GenerateExercisesLink(version, x.Id); 
-            }
-
-            return exercises;
-        }
-*/
