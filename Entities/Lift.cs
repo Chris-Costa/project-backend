@@ -8,7 +8,6 @@ namespace project_backend.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]  //generate new key when blog post is added
         public int Id { get; set; }
-        //public int WorkoutID { get; set; }
         public string? Name { get; set; }
         public int? Weight { get; set; } 
         public int? Sets { get; set; }
@@ -17,5 +16,9 @@ namespace project_backend.Entities
         [ForeignKey("WorkoutId")]
         public Workout? Workout { get; set; }
         public int WorkoutId { get; set; } 
+
+        [ForeignKey("UserId")]
+        public User? User { get; set; }
+        public int UserId { get; set; } 
     }
 }

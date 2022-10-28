@@ -2,7 +2,7 @@ namespace project_backend.Models;
 
 public class Lift
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     public string? Name { get; set; }
     public int? Weight { get; set; }  
     public int? Sets { get; set; }

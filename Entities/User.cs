@@ -14,7 +14,6 @@ namespace project_backend.Entities
         public string? Username { get; set; }
         public string? Avatar { get; set; }
         public int WeightGoal { get; set; }
-        //public List<Workout> Workouts { get; } = new();
         public ICollection<Workout> Workouts { get; set; }
                = new List<Workout>();
     }

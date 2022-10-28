@@ -2,7 +2,8 @@ namespace project_backend.Models;
 
 public class Workout
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     public string? Title { get; set; }
-    public List<Lift> Lifts { get; } = new();
+    public ICollection<Lift> Lifts { get; set; }
+            = new List<Lift>();
 }
