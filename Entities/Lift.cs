@@ -3,22 +3,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace project_backend.Entities
 {
-    public class Lift 
+    public class Lift
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]  //generate new key when blog post is added
         public int Id { get; set; }
-        public string? Name { get; set; }
         public int? Weight { get; set; } 
         public int? Sets { get; set; }
         public int? Reps { get; set; }
 
+        [ForeignKey("ExerciseId")]
+        public Exercise? Exercise { get; set; }
+        public int ExerciseId { get; set; }
+
         [ForeignKey("WorkoutId")]
         public Workout? Workout { get; set; }
         public int WorkoutId { get; set; } 
-
-        [ForeignKey("UserId")]
-        public User? User { get; set; }
-        public int UserId { get; set; } 
     }
 }
