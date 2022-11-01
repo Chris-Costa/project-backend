@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using project_backend.Models;
 using project_backend.Services;
+using AutoMapper;
 
 namespace project_backend.Controllers;
 
@@ -8,7 +9,10 @@ namespace project_backend.Controllers;
 [Route("[controller]")]
 public class ExerciseController : ControllerBase
 {
-    public ExerciseController() { }
+    public ExerciseController(IMapper mapper) 
+    {
+        _mapper = mapper;
+    }
 
     [HttpGet]
     public ActionResult<List<Exercise>> GetAll() =>
