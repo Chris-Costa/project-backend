@@ -114,7 +114,7 @@ namespace project_backend.Data
                     ImageURL="x",
                     VideoURL="x"
                 });
-            
+            /*
             modelBuilder.Entity<Lift>().HasData(
                 new WorkoutLift()
                 {
@@ -143,7 +143,7 @@ namespace project_backend.Data
                     Sets=4,
                     Reps=20
                 });
-            
+            */
             modelBuilder.Entity<User>().HasData(
                 new User()
                 { 

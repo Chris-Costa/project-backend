@@ -1,4 +1,6 @@
 using project_backend.Entities;
+using project_backend.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace project_backend.Services
 {
@@ -8,7 +10,7 @@ namespace project_backend.Services
 
         public ExerciseService(CVFitContext context)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context))
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public async Task<IEnumerable<Exercise>> GetExercises()
@@ -19,7 +21,7 @@ namespace project_backend.Services
 
         public async Task<Exercise?> GetExerciseByID(int exerciseId)
         {
-            return await _context.Exercises.Where(e => e.id == exerciseId).FisrtOrDefualtAsync();
+            return await _context.Exercises.Where(e => e.Id == exerciseId).FirstOrDefaultAsync();
         }
 
     }
