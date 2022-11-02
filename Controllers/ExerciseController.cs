@@ -10,17 +10,20 @@ namespace project_backend.Controllers;
 public class ExerciseController : ControllerBase
 {
     private readonly IExerciseService _exerciseService;
+    private readonly IMapper _mapper;
 
-    public ExerciseController(IExerciseService exerciseService /*IMapper mapper*/) 
+    public ExerciseController(IExerciseService exerciseService, IMapper mapper) 
     {
         _exerciseService = exerciseService ?? throw new ArgumentNullException(nameof(exerciseService));
-        /*_mapper = mapper;*/
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Exercise>>> GetAll() 
     {
         var exerciseEntities = await _exerciseService.GetExercises();
+        return Ok(_mapper.Map<IEnumerable<Exercise>>(exerciseEntities));
+        /*
         var results = new List<Exercise>();
         
         foreach(var exerciseEntity in exerciseEntities)
@@ -36,9 +39,8 @@ public class ExerciseController : ControllerBase
                 ImageURL = exerciseEntity.ImageURL,
                 VideoURL = exerciseEntity.VideoURL
             });
-        }
-        return Ok(results);
-        //ExerciseService.GetAll();
+        }*/
+        //return Ok(results);
     }
 /*
     [HttpGet("{id}")]
