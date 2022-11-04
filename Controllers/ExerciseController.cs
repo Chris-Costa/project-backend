@@ -23,35 +23,16 @@ public class ExerciseController : ControllerBase
     {
         var exerciseEntities = await _exerciseService.GetExercises();
         return Ok(_mapper.Map<IEnumerable<Exercise>>(exerciseEntities));
-        /*
-        var results = new List<Exercise>();
-        
-        foreach(var exerciseEntity in exerciseEntities)
-        {
-            results.Add(new Exercise 
-            {
-                Id = exerciseEntity.Id,
-                Name = exerciseEntity.Name,
-                MuscleGroup = exerciseEntity.MuscleGroup,
-                Description = exerciseEntity.Description,
-                RepRange = exerciseEntity.RepRange,
-                Difficulty = exerciseEntity.Difficulty,
-                ImageURL = exerciseEntity.ImageURL,
-                VideoURL = exerciseEntity.VideoURL
-            });
-        }*/
-        //return Ok(results);
     }
-/*
+
     [HttpGet("{id}")]
-    public ActionResult<Exercise> Get(int id)
+    public async Task<ActionResult<Exercise>> GetExerciseByID(int id)
     {
-        var exercise = ExerciseService.Get(id);
-
-        if(exercise == null)
+        var exercise = await _exerciseService.GetExerciseByID(id);
+        if (exercise == null)
+        {
             return NotFound();
-
-        return exercise;
-    }
-    */
+        }
+        return Ok(_mapper.Map<Exercise>(exercise));
+    } 
 }

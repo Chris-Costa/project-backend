@@ -1,45 +1,27 @@
-using project_backend.Models;
+using project_backend.Entities;
+using project_backend.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace project_backend.Services;
-
-public static class UserService
+namespace project_backend.Services
 {
-    static List<User> Users { get; }
-    static int nextId = 3;
-    static UserService()
+    public class UserService : IUserService
     {
-        Users = new List<User>
+        private readonly CVFitContext _context;
+
+        public UserService(CVFitContext context)
         {
-            new User { Id = 1, Firstname = "FirstName", Lastname = "LastName", Username = "UserName", Avatar = "", WeightGoal = 180/*, LikedPosts = [1, 2], Workouts = [{Title = "Workout 1", Lifts = [{Name = "Lift 1", Weight = 45, Sets = 4, Reps = 15}, {Name = "Lift 2", Weight = 75, Sets = 3, Reps = 12}]}, {Title = "Workout 2", Lifts = [{Name = "Lift 1", Weight = 45, Sets = 4, Reps = 15}, {Name = "Lift 2", Weight = 75, Sets = 3, Reps = 12}]}] */},
-            new User { Id = 2, Firstname = "FirstName2", Lastname = "LastName2", Username = "UserName2", Avatar = "", WeightGoal = 122/*, LikedPosts = [1]/*, Workouts = [{Title = "Workout 1", Lifts = [{Name = "Lift 1", Weight = 45, Sets = 4, Reps = 15}, {Name = "Lift 2", Weight = 75, Sets = 3, Reps = 12}]}, {Title = "Workout 2", Lifts = [{Name = "Lift 1", Weight = 45, Sets = 4, Reps = 15}, {Name = "Lift 2", Weight = 75, Sets = 3, Reps = 12}]}] */}
-        };
-    }
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
 
-    public static List<User> GetAll() => Users;
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            //order by used for name currently maybe category later
+            return await _context.Users.OrderBy(u => u.Firstname).ToListAsync();
+        }
 
-    public static User? Get(int id) => Users.FirstOrDefault(u => u.Id == id);
-
-    public static void Add(User user)
-    {
-        user.Id = nextId++;
-        Users.Add(user);
-    }
-
-    public static void Delete(int id)
-    {
-        var user = Get(id);
-        if(user is null)
-            return;
-
-        Users.Remove(user);
-    }
-
-    public static void Update(User user)
-    {
-        var index = Users.FindIndex(u => u.Id == user.Id);
-        if(index == -1)
-            return;
-
-        Users[index] = user;
+        public async Task<User?> GetUserByID(int userId)
+        {
+            return await _context.Users.Where(u => u.Id == userId).FirstOrDefaultAsync();
+        }
     }
 }

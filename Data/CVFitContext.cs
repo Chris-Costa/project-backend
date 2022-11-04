@@ -7,7 +7,7 @@ namespace project_backend.Data
 {
     public class CVFitContext : DbContext
     {
-        public DbSet<Blog> BlogPosts { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<User> Users { get; set; }
 

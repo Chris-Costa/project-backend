@@ -9,7 +9,7 @@ namespace project_backend.Controllers;
 public class UserController : ControllerBase
 {
     public UserController() { }
-
+/*
     [HttpGet]
     public ActionResult<List<User>> GetAll() =>
         UserService.GetAll();
@@ -59,4 +59,5 @@ public class UserController : ControllerBase
    
         return NoContent();
     }
+    */
 }
