@@ -10,6 +10,7 @@ namespace project_backend.Data
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Comment> Comment { get; set; }
 
         public string DbPath { get; }
 

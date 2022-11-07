@@ -8,6 +8,6 @@ public class Blog
     public string? Content { get; set; }
     public string? Avatar { get; set; }
     public int Likes { get; set; }
-    public ICollection<Comment> Comments { get; set; }
+    public ICollection<Comment> Comment { get; set; }
             = new List<Comment>();
 }

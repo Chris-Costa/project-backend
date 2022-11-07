@@ -20,7 +20,20 @@ namespace project_backend.Services
 
         public async Task<Blog?> GetBlogByID(int blogId)
         {
-            return await _context.Blogs.Where(b => b.Id == blogId).FirstOrDefaultAsync();
+            return await _context.Blogs.Include(b => b.Comment)
+                    .Where(b => b.Id == blogId).FirstOrDefaultAsync();
+            
         }
+        /*
+        public async Task<IEnumerable<Comment>> GetBlogsComments(int blogId)
+        {
+            return await _context.Comments.Where(c => c.BlogId == blogId).ToListAsync();
+        }
+
+        public async Task<Comment?> GetBlogsComments(int blogId, int commentId)
+        {
+            return await _context.Comments.Where(c => c.BlogId == blogId && c.Id == commentId).FirstOrDefaultAsync();
+        }
+        */
     }
 }

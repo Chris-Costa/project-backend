@@ -35,4 +35,11 @@ public class BlogController : ControllerBase
         }
         return Ok(_mapper.Map<Blog>(blog));
     } 
+/*
+    [HttpPost]
+    public async Task<ActionResult<Blog>> CreateBlogPost(Blog post)
+    {
+        var blog = _mapper.Map<Entities.Blog>(post);
+    }
+    */
 }
