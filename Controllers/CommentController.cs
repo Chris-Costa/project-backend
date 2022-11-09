@@ -63,4 +63,25 @@ public class CommentController : ControllerBase
 
         return CreatedAtRoute("GetComment", new {blogId = blogId, commentId = commentToReturn.Id}, commentToReturn);
     }
+
+    [HttpDelete("{commentId}")]
+    public async Task<ActionResult> DeleteComment(int blogId, int commentId)
+    {
+        if (!await _blogService.BlogExists(blogId))
+        {
+            return NotFound();
+        }
+
+        var commentEntity = await _blogService.GetSpecificBlogComment(blogId, commentId);
+        
+        if (commentEntity == null)
+        {
+            return NotFound();
+        }
+
+        _blogService.DeleteComment(commentEntity);
+        await _blogService.SaveChangesAsync();
+
+        return NoContent();
+    }
 }
