@@ -11,6 +11,8 @@ namespace project_backend.Data
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Comment> Comment { get; set; }
+        public DbSet<Workout> Workout { get; set; }
+        public DbSet<Lift> Lift { get; set; }
 
         public string DbPath { get; }
 

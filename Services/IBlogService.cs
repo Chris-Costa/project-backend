@@ -10,11 +10,12 @@ namespace project_backend.Services
 
         Task<bool> BlogExists(int blogId);
 
-        Task<IEnumerable<Comment>> GetAllBlogsComments(int blogId);
-
         Task CreateBlogPost(Blog blog);
 
         void DeleteBlog(Blog blog);
+
+        //methods for comments
+        Task<IEnumerable<Comment>> GetAllBlogsComments(int blogId);
 
         Task<Comment?> GetSpecificBlogComment(int blogId, int commentId);
 
