@@ -40,6 +40,22 @@ namespace project_backend.Services
         {
             return await _context.Comment.Where(c => c.BlogId == blogId && c.Id == commentId).FirstOrDefaultAsync();
         }
-        
+
+        public async Task PostCommentToBlogPost(int blogId, Comment comment)
+        {
+            var blog = await GetBlogByID(blogId);
+            
+            blog.Comment.Add(comment);
+        }
+
+        public void DeleteComment(Comment comment)
+        {
+            _context.Comment.Remove(comment);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _context.SaveChangesAsync() >= 0);
+        }
     }
 }

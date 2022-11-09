@@ -44,4 +44,23 @@ public class CommentController : ControllerBase
         }
         return Ok(_mapper.Map<Comment>(comment));
     }
+
+    [HttpPost]
+    public async Task<ActionResult<Comment>> CreateCommentForBlogPost(int blogId, CommentCreation comment)
+    {
+        if (!await _blogService.BlogExists(blogId))
+        {
+            return NotFound();
+        }
+
+        var fComment = _mapper.Map<Entities.Comment>(comment);
+
+        await _blogService.PostCommentToBlogPost(blogId, fComment);
+
+        await _blogService.SaveChangesAsync();
+
+        var commentToReturn = _mapper.Map<Models.Comment>(fComment);
+
+        return CreatedAtRoute("GetComment", new {blogId = blogId, commentId = commentToReturn.Id}, commentToReturn);
+    }
 }

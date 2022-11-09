@@ -7,6 +7,7 @@ namespace project_backend.Profiles
         public CommentProfile()
         {
             CreateMap<Entities.Comment, Models.Comment>();
+            CreateMap<Models.CommentCreation, Entities.Comment>();
         }
     }
 }

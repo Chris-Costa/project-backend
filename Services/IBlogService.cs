@@ -13,6 +13,11 @@ namespace project_backend.Services
         Task<IEnumerable<Comment>> GetAllBlogsComments(int blogId);
 
         Task<Comment?> GetSpecificBlogComment(int blogId, int commentId);
-      
+
+        Task PostCommentToBlogPost(int blogId, Comment comment);
+
+        void DeleteComment(Comment comment);
+
+        Task<bool> SaveChangesAsync();
     }
 }
