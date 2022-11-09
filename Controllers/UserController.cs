@@ -9,7 +9,6 @@ namespace project_backend.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    /*
     private readonly IUserService _userService;
     private readonly IMapper _mapper;
 
@@ -36,5 +35,4 @@ public class UserController : ControllerBase
         }
         return Ok(_mapper.Map<User>(user));
     } 
-    */
 }

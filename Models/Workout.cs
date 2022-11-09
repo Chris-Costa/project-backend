@@ -4,6 +4,6 @@ public class Workout
 {
     public int Id { get; set; }
     public string? Title { get; set; }
-    public ICollection<Lift> Lifts { get; set; }
+    public ICollection<Lift> Lift { get; set; }
             = new List<Lift>();
 }

@@ -6,7 +6,6 @@ namespace project_backend.Services
 {
     public class UserService : IUserService
     {
-        /*
         private readonly CVFitContext _context;
 
         public UserService(CVFitContext context)
@@ -26,7 +25,7 @@ namespace project_backend.Services
 
         public async Task<bool> UserExists(int userId)
         {
-            return await _context.Users.AnyAsync(u => u.Id => userId);
+            return await _context.Users.AnyAsync(u => u.Id == userId);
         }
 
         public async Task CreateNewUser(User user)
@@ -46,19 +45,19 @@ namespace project_backend.Services
         }
         public async Task<IEnumerable<Workout>> GetAllofUsersWorkouts(int userId)
         {
-            return await _context.Users.Where(u => u.Id == userId).ToListAsync();
+            return await _context.Workout.Where(u => u.Id == userId).ToListAsync();
         }
 
         public async Task<Workout?> GetSpecificUserWorkout(int userId, int workoutId)
         {
-            return await _context.Users.Where(u => u.Id == userId && u.Id == commentId).FirstOrDefaultAsync();
+            return await _context.Workout.Where(u => u.Id == userId && u.Id == workoutId).FirstOrDefaultAsync();
         }
 
         public async Task PostWorkoutToUser(int userId, Workout workout)
         {
             var user = await GetUserByID(userId);
 
-            user.Users.Add(workout);
+            user.Workout.Add(workout);
         }
 
         public void DeleteWorkout(Workout workout)
@@ -74,17 +73,17 @@ namespace project_backend.Services
 
         public async Task<IEnumerable<Lift>> GerAllLiftsOfWorkout(int workoutId)
         {
-            return await _context.Workout.Where(l => l.WorkoutId == workoutId).ToListAsync();
+            return await _context.Lift.Where(l => l.WorkoutId == workoutId).ToListAsync();
         }
-
+        /*
         public async Task<Lift?> GetSpecificLiftInWorkout(int workoutId, int liftId)
         {
-            return await _context.Workout.Where(l => l.WorkoutId == workoutId && l.Id == liftId);
+            return await _context.Lift.Where(l => l.WorkoutId == workoutId && l.Id == liftId);
         }
-
-        public async Task PostLiftToWorkout(int workouId, Lift lift)
+        */
+        public async Task PostLiftToWorkout(int workoutId, Lift lift)
         {
-            var workout = await GetWorkoutByID(wokroutId);
+            var workout = await GetWorkoutByID(workoutId);
 
             workout.Lift.Add(lift);
         }
@@ -98,6 +97,5 @@ namespace project_backend.Services
         {
             return (await _context.SaveChangesAsync() >= 0);
         }
-        */
     }
 }

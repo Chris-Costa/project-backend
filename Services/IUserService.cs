@@ -4,7 +4,6 @@ namespace project_backend.Services
 {
     public interface IUserService
     {
-        /*
         Task<IEnumerable<User>> GetUsers();
 
         Task<User?> GetUserByID(int userId);
@@ -29,13 +28,13 @@ namespace project_backend.Services
 
         Task<IEnumerable<Lift>> GerAllLiftsOfWorkout(int workoutId);
 
-        Task<Lift?> GetSpecificLiftInWorkout(int workoutId, int liftId);
+        //Task<Lift?> GetSpecificLiftInWorkout(int workoutId, int liftId);
 
         Task PostLiftToWorkout(int workouId, Lift lift);
 
         void DeleteLift(Lift lift);
 
         Task<bool> SaveChangesAsync();
-        */
+        
     }
 }
