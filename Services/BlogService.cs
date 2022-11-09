@@ -24,16 +24,22 @@ namespace project_backend.Services
                     .Where(b => b.Id == blogId).FirstOrDefaultAsync();
             
         }
-        /*
-        public async Task<IEnumerable<Comment>> GetBlogsComments(int blogId)
+
+        //bool method to return if blog post exists
+        public async Task<bool> BlogExists(int blogId)
         {
-            return await _context.Comments.Where(c => c.BlogId == blogId).ToListAsync();
+            return await _context.Blogs.AnyAsync(b => b.Id == blogId);
         }
 
-        public async Task<Comment?> GetBlogsComments(int blogId, int commentId)
+        public async Task<IEnumerable<Comment>> GetAllBlogsComments(int blogId)
         {
-            return await _context.Comments.Where(c => c.BlogId == blogId && c.Id == commentId).FirstOrDefaultAsync();
+            return await _context.Comment.Where(c => c.BlogId == blogId).ToListAsync();
         }
-        */
+
+        public async Task<Comment?> GetSpecificBlogComment(int blogId, int commentId)
+        {
+            return await _context.Comment.Where(c => c.BlogId == blogId && c.Id == commentId).FirstOrDefaultAsync();
+        }
+        
     }
 }
