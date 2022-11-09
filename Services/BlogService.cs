@@ -31,6 +31,16 @@ namespace project_backend.Services
             return await _context.Blogs.AnyAsync(b => b.Id == blogId);
         }
 
+        public async Task CreateBlogPost(Blog blog)
+        {
+            _context.Blogs.Add(blog);
+        }
+
+        public void DeleteBlog(Blog blog)
+        {
+            _context.Blogs.Remove(blog);
+        }
+
         public async Task<IEnumerable<Comment>> GetAllBlogsComments(int blogId)
         {
             return await _context.Comment.Where(c => c.BlogId == blogId).ToListAsync();
