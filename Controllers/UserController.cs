@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using project_backend.Models;
 using project_backend.Services;
+using AutoMapper;
 
 namespace project_backend.Controllers;
 
@@ -8,55 +9,32 @@ namespace project_backend.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    public UserController() { }
+    /*
+    private readonly IUserService _userService;
+    private readonly IMapper _mapper;
+
+    public UserController(IUserService userService, IMapper mapper) 
+    {
+        _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+    }
 
     [HttpGet]
-    public ActionResult<List<User>> GetAll() =>
-        UserService.GetAll();
+    public async Task<ActionResult<IEnumerable<User>>> GetUsers() 
+    {
+        var userEntities = await _userService.GetUsers();
+        return Ok(_mapper.Map<IEnumerable<User>>(userEntities));
+    }
 
     [HttpGet("{id}")]
-    public ActionResult<User> Get(int id)
+    public async Task<ActionResult<User>> GetUserByID(int id)
     {
-        var user = UserService.Get(id);
-
-        if(user == null)
+        var user = await _userService.GetUserByID(id);
+        if (user == null)
+        {
             return NotFound();
-
-        return user;
-    }
-
-    [HttpPost]
-    public IActionResult Create(User user)
-    {            
-        UserService.Add(user);
-        return CreatedAtAction(nameof(Create), new { id = user.Id }, user);
-    }
-
-    [HttpPut("{id}")]
-    public IActionResult Update(int id, User user)
-    {
-        if (id != user.Id)
-            return BadRequest();
-           
-        var existingUser = UserService.Get(id);
-        if(existingUser is null)
-            return NotFound();
-   
-        UserService.Update(user);           
-   
-        return NoContent();
-    }
-
-    [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
-    {
-        var user = UserService.Get(id);
-   
-        if (user is null)
-            return NotFound();
-       
-        UserService.Delete(id);
-   
-        return NoContent();
-    }
+        }
+        return Ok(_mapper.Map<User>(user));
+    } 
+    */
 }

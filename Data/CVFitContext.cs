@@ -7,9 +7,12 @@ namespace project_backend.Data
 {
     public class CVFitContext : DbContext
     {
-        public DbSet<Blog> BlogPosts { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Comment> Comment { get; set; }
+        public DbSet<Workout> Workout { get; set; }
+        public DbSet<Lift> Lift { get; set; }
 
         public string DbPath { get; }
 
@@ -114,7 +117,7 @@ namespace project_backend.Data
                     ImageURL="x",
                     VideoURL="x"
                 });
-            
+            /*
             modelBuilder.Entity<Lift>().HasData(
                 new WorkoutLift()
                 {
@@ -143,7 +146,7 @@ namespace project_backend.Data
                     Sets=4,
                     Reps=20
                 });
-            
+            */
             modelBuilder.Entity<User>().HasData(
                 new User()
                 { 
