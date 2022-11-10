@@ -117,9 +117,9 @@ namespace project_backend.Data
                     ImageURL="x",
                     VideoURL="x"
                 });
-            /*
+            
             modelBuilder.Entity<Lift>().HasData(
-                new WorkoutLift()
+                new Lift()
                 {
                     Id=1,
                     ExerciseId=1,
@@ -131,7 +131,7 @@ namespace project_backend.Data
                 new Lift()
                 {
                     Id=2,
-                    ExerciseId=1,
+                    ExerciseId=3,
                     WorkoutId=1,
                     Weight=145,
                     Sets=4,
@@ -140,13 +140,13 @@ namespace project_backend.Data
                 new Lift()
                 {
                     Id=3,
-                    ExerciseId=22,
-                    WorkoutId=2,
+                    ExerciseId=2,
+                    WorkoutId=3,
                     Weight=0,
                     Sets=4,
                     Reps=20
                 });
-            */
+            
             modelBuilder.Entity<User>().HasData(
                 new User()
                 { 

@@ -23,5 +23,10 @@ namespace project_backend.Services
         {
             return await _context.Exercises.Where(e => e.Id == exerciseId).FirstOrDefaultAsync();
         }
+
+        public async Task<bool> ExerciseExists(int exerciseId)
+        {
+            return await _context.Exercises.AnyAsync(e => e.Id == exerciseId);
+        }
     }
 }

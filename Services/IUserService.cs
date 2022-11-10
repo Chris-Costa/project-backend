@@ -26,11 +26,11 @@ namespace project_backend.Services
 
         Task<bool> WorkoutExists(int workoutId);
 
-        Task<IEnumerable<Lift>> GerAllLiftsOfWorkout(int workoutId);
+        Task<IEnumerable<Lift>> GetAllLiftsOfWorkout(int workoutId);
 
-        Task<Lift?> GetSpecificLiftInWorkout(int workoutId, int liftId);
+        Task<Lift?> GetSpecificWorkoutLift(int workoutId, int liftId);
 
-        Task PostLiftToWorkout(int workouId, Lift lift);
+        Task PostLiftToWorkout(int workouId, int exerciseId, Lift lift);
 
         void DeleteLift(Lift lift);
 
