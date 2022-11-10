@@ -8,7 +8,7 @@ namespace project_backend.Services
 
         Task<User?> GetUserByID(int userId);
 
-        //Task<bool> UserExists(int userId);
+        Task<bool> UserExists(int userId);
 
         Task CreateNewUser(User user);
 

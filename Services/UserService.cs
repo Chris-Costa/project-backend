@@ -45,12 +45,12 @@ namespace project_backend.Services
         }
         public async Task<IEnumerable<Workout>> GetAllofUsersWorkouts(int userId)
         {
-            return await _context.Workout.Where(u => u.Id == userId).ToListAsync();
+            return await _context.Workout.Where(w => w.UserId == userId).ToListAsync();
         }
 
         public async Task<Workout?> GetSpecificUserWorkout(int userId, int workoutId)
         {
-            return await _context.Workout.Where(u => u.Id == userId && u.Id == workoutId).FirstOrDefaultAsync();
+            return await _context.Workout.Where(u => u.UserId == userId && u.Id == workoutId).FirstOrDefaultAsync();
         }
 
         public async Task PostWorkoutToUser(int userId, Workout workout)

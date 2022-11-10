@@ -2,13 +2,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace project_backend.Models
 {
-    public class CommentCreation
+    public class WorkoutCreation
     {
         [Required(ErrorMessage = "You should provide a name value.")]
         [MaxLength(50)]
-        public string User { get; set; } = string.Empty;
+        public string? Title { get; set; } = string.Empty;
 
-        [MaxLength(200)]
-        public string? Reply { get; set; }
+        public ICollection<Lift> Lift { get; set; } = new List<Lift>();
     }
 }
