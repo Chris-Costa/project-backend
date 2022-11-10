@@ -15,12 +15,12 @@ namespace project_backend.Services
 
         public async Task<IEnumerable<Blog>> GetBlogs()
         {
-            return await _context.Blogs.OrderBy(b => b.Title).ToListAsync();
+            return await _context.BlogPosts.OrderBy(b => b.Title).ToListAsync();
         }
 
         public async Task<Blog?> GetBlogByID(int blogId)
         {
-            return await _context.Blogs.Include(b => b.Comment)
+            return await _context.BlogPosts.Include(b => b.Comment)
                     .Where(b => b.Id == blogId).FirstOrDefaultAsync();
             
         }
@@ -28,17 +28,17 @@ namespace project_backend.Services
         //bool method to return if blog post exists
         public async Task<bool> BlogExists(int blogId)
         {
-            return await _context.Blogs.AnyAsync(b => b.Id == blogId);
+            return await _context.BlogPosts.AnyAsync(b => b.Id == blogId);
         }
 
         public async Task CreateBlogPost(Blog blog)
         {
-            _context.Blogs.Add(blog);
+            _context.BlogPosts.Add(blog);
         }
 
         public void DeleteBlog(Blog blog)
         {
-            _context.Blogs.Remove(blog);
+            _context.BlogPosts.Remove(blog);
         }
 
         public async Task<IEnumerable<Comment>> GetAllBlogsComments(int blogId)

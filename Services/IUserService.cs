@@ -14,8 +14,6 @@ namespace project_backend.Services
 
         void DeleteUser(User user);
 
-        Task<Workout?> GetWorkoutByID(int workoutId);
-
         Task<IEnumerable<Workout>> GetAllofUsersWorkouts(int userId);
 
         Task<Workout?> GetSpecificUserWorkout(int userId, int workoutId);
@@ -26,15 +24,16 @@ namespace project_backend.Services
 
         Task<bool> WorkoutExists(int workoutId);
 
-        Task<IEnumerable<Lift>> GerAllLiftsOfWorkout(int workoutId);
+        Task<Workout?> GetWorkoutByID(int workoutId);
 
-        //Task<Lift?> GetSpecificLiftInWorkout(int workoutId, int liftId);
+        Task<IEnumerable<Lift>> GetAllLiftsOfWorkout(int workoutId);
 
-        Task PostLiftToWorkout(int workouId, Lift lift);
+        Task<Lift?> GetSpecificWorkoutLift(int workoutId, int liftId);
+
+        Task PostLiftToWorkout(int workouId, int exerciseId, Lift lift);
 
         void DeleteLift(Lift lift);
 
         Task<bool> SaveChangesAsync();
-        
     }
 }

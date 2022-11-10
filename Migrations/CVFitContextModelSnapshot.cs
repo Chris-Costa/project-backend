@@ -40,7 +40,7 @@ namespace project_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("BlogPosts", (string)null);
 
                     b.HasData(
                         new
@@ -93,7 +93,7 @@ namespace project_backend.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comment", (string)null);
 
                     b.HasData(
                         new
@@ -155,7 +155,7 @@ namespace project_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Exercises");
+                    b.ToTable("Exercises", (string)null);
 
                     b.HasData(
                         new
@@ -199,8 +199,8 @@ namespace project_backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ExerciseId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("Reps")
                         .HasColumnType("INTEGER");
@@ -216,11 +216,9 @@ namespace project_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExerciseId");
-
                     b.HasIndex("WorkoutId");
 
-                    b.ToTable("Lift");
+                    b.ToTable("Lift", (string)null);
                 });
 
             modelBuilder.Entity("project_backend.Entities.User", b =>
@@ -246,7 +244,7 @@ namespace project_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new
@@ -294,7 +292,7 @@ namespace project_backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Workout");
+                    b.ToTable("Workout", (string)null);
 
                     b.HasData(
                         new
@@ -344,7 +342,7 @@ namespace project_backend.Migrations
             modelBuilder.Entity("project_backend.Entities.Comment", b =>
                 {
                     b.HasOne("project_backend.Entities.Blog", "Blog")
-                        .WithMany("Comment")
+                        .WithMany("Comments")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -354,19 +352,11 @@ namespace project_backend.Migrations
 
             modelBuilder.Entity("project_backend.Entities.Lift", b =>
                 {
-                    b.HasOne("project_backend.Entities.Exercise", "Exercise")
-                        .WithMany()
-                        .HasForeignKey("ExerciseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("project_backend.Entities.Workout", "Workout")
                         .WithMany("Lifts")
                         .HasForeignKey("WorkoutId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Exercise");
 
                     b.Navigation("Workout");
                 });
@@ -384,7 +374,7 @@ namespace project_backend.Migrations
 
             modelBuilder.Entity("project_backend.Entities.Blog", b =>
                 {
-                    b.Navigation("Comment");
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("project_backend.Entities.User", b =>

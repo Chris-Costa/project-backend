@@ -46,7 +46,7 @@ public class WorkoutController : ControllerBase
     } 
 
     [HttpPost]
-    public async Task<ActionResult<Workout>> CreateWorkout(int userId, WorkoutCreation workout)
+    public async Task<ActionResult<Workout>> PostWorkoutToUser(int userId, WorkoutCreation workout)
     {
         if (!await _userService.UserExists(userId))
         {
@@ -81,6 +81,4 @@ public class WorkoutController : ControllerBase
 
         return NoContent();
     }
-
-   
 }

@@ -7,5 +7,7 @@ namespace project_backend.Services
         Task<IEnumerable<Exercise>> GetExercises();
 
         Task<Exercise?> GetExerciseByID(int exerciseId);
+
+        Task<bool> ExerciseExists(int exerciseId);
     }
 }

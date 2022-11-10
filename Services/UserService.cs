@@ -43,6 +43,7 @@ namespace project_backend.Services
         {
             return await _context.Workout.Where(w => w.Id == workoutId).FirstOrDefaultAsync();
         }
+
         public async Task<IEnumerable<Workout>> GetAllofUsersWorkouts(int userId)
         {
             return await _context.Workout.Where(w => w.UserId == userId).ToListAsync();
@@ -71,17 +72,17 @@ namespace project_backend.Services
             return await _context.Workout.AnyAsync(w => w.Id == workoutId);
         }
 
-        public async Task<IEnumerable<Lift>> GerAllLiftsOfWorkout(int workoutId)
+        public async Task<IEnumerable<Lift>> GetAllLiftsOfWorkout(int workoutId)
         {
             return await _context.Lift.Where(l => l.WorkoutId == workoutId).ToListAsync();
         }
-        /*
-        public async Task<Lift?> GetSpecificLiftInWorkout(int workoutId, int liftId)
+        
+        public async Task<Lift?> GetSpecificWorkoutLift(int workoutId, int liftId)
         {
-            return await _context.Lift.Where(l => l.WorkoutId == workoutId && l.Id == liftId);
+            return await _context.Lift.Where(l => l.WorkoutId == workoutId && l.Id == liftId).FirstOrDefaultAsync();
         }
-        */
-        public async Task PostLiftToWorkout(int workoutId, Lift lift)
+        
+        public async Task PostLiftToWorkout(int workoutId, int exerciseId, Lift lift)
         {
             var workout = await GetWorkoutByID(workoutId);
 
