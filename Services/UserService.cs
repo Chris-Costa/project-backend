@@ -43,6 +43,7 @@ namespace project_backend.Services
         {
             return await _context.Workout.Where(w => w.Id == workoutId).FirstOrDefaultAsync();
         }
+
         public async Task<IEnumerable<Workout>> GetAllofUsersWorkouts(int userId)
         {
             return await _context.Workout.Include(w => w.Lift).Where(u => u.UserId == userId).ToListAsync();
@@ -86,6 +87,16 @@ namespace project_backend.Services
             var workout = await GetWorkoutByID(workoutId);
 
             workout.Lift.Add(lift);
+        }
+
+        public async Task<Lift?> GetLiftByID(int liftId)
+        {
+            return await _context.Lift.Where(l => l.Id == liftId).FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> LiftExists(int liftId)
+        {
+            return await _context.Lift.AnyAsync(l => l.Id == liftId);
         }
 
         public void DeleteLift(Lift lift)

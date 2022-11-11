@@ -89,4 +89,21 @@ public class LiftController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpPut("{liftId}")]
+    public async Task<ActionResult> UpdateUser(int liftId, LiftUpdate liftUpdate)
+    {
+        if (!await _userService.LiftExists(liftId))
+        {
+            return NotFound();
+        }
+
+        var liftEntity = await _userService.GetLiftByID(liftId);
+
+        _mapper.Map(liftUpdate, liftEntity);
+
+        await _userService.SaveChangesAsync();
+
+        return NoContent();
+    }
 }

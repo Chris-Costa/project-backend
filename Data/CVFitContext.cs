@@ -123,7 +123,7 @@ namespace project_backend.Data
                 new Lift()
                 {
                     Id=1,
-                    ExerciseId=1,
+                    Name="Bench",
                     WorkoutId=1,
                     Weight=45,
                     Sets=4,
@@ -132,7 +132,7 @@ namespace project_backend.Data
                 new Lift()
                 {
                     Id=2,
-                    ExerciseId=3,
+                    Name="Fly's",
                     WorkoutId=1,
                     Weight=145,
                     Sets=4,
@@ -141,7 +141,7 @@ namespace project_backend.Data
                 new Lift()
                 {
                     Id=3,
-                    ExerciseId=2,
+                    Name="Pushups",
                     WorkoutId=3,
                     Weight=0,
                     Sets=4,

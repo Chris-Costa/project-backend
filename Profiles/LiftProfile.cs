@@ -8,6 +8,7 @@ namespace project_backend.Profiles
         {
             CreateMap<Entities.Lift, Models.Lift>();
             CreateMap<Models.LiftCreation, Entities.Lift>();
+            CreateMap<Models.LiftUpdate, Entities.Lift>();
         }
     }
 }
