@@ -101,5 +101,31 @@ namespace project_backend.Services
         {
             return (await _context.SaveChangesAsync() >= 0);
         }
+
+        //contact us methods
+        public async Task<IEnumerable<ContactUs>> GetProspectiveClients()
+        {
+            return await _context.ContactUs.OrderBy(c => c.Firstname).ToListAsync();
+        }
+
+        public async Task<ContactUs?> GetProspectiveClientById(int prospectiveId)
+        {
+            return await _context.ContactUs.Where(p => p.Id == prospectiveId).FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> ProspectiveExists(int id)
+        {
+            return await _context.ContactUs.AnyAsync(u => u.Id == id);
+        }
+
+        public async Task CreateProspectiveClient(ContactUs contactUs)
+        {
+            _context.ContactUs.Add(contactUs);
+        }
+
+        public void DeleteProspectiveClient(ContactUs contactUs)
+        {
+            _context.ContactUs.Remove(contactUs);
+        }
     }
 }

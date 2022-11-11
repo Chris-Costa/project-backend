@@ -8,6 +8,6 @@ namespace project_backend.Models
         [MaxLength(50)]
         public string? Title { get; set; } = string.Empty;
 
-        public ICollection<Lift> Lift { get; set; } = new List<Lift>();
+        public ICollection<Lift> Lift { get; set; }
     }
 }

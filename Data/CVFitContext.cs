@@ -13,6 +13,7 @@ namespace project_backend.Data
         public DbSet<Comment> Comment { get; set; }
         public DbSet<Workout> Workout { get; set; }
         public DbSet<Lift> Lift { get; set; }
+        public DbSet<ContactUs> ContactUs { get; set; }
 
         public string DbPath { get; }
 
@@ -218,6 +219,40 @@ namespace project_backend.Data
                     Id=7,
                     UserId=3,
                     Title="Cardio and Abs"
+                });
+
+            modelBuilder.Entity<ContactUs>().HasData(
+                new ContactUs()
+                {
+                    Id=1,
+                    Firstname= "Mike",
+                    Lastname="Green",
+                    Email="mGreen234@gmail.com",
+                    Notes="Some generic message about what they want to get out of a membership"
+                },
+                new ContactUs()
+                {
+                    Id=2,
+                    Firstname="Shannon",
+                    Lastname="Cassel",
+                    Email="sCassel893@gmail.com",
+                    Notes="Some generic message about what they want to get out of a membership"
+                },
+                new ContactUs()
+                {
+                    Id=3,
+                    Firstname="Lexi",
+                    Lastname="Rice",
+                    Email="lRice034@gmail.com",
+                    Notes="Some generic message about what they want to get out of a membership"
+                },
+                new ContactUs()
+                {
+                    Id=4,
+                    Firstname="Tyler",
+                    Lastname="Maderia",
+                    Email="tMaderia432@gmail.com",
+                    Notes="Some generic message about what they want to get out of a membership"
                 });
 
             base.OnModelCreating(modelBuilder);

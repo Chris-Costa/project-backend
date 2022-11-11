@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using project_backend.Data;
 
@@ -10,9 +11,10 @@ using project_backend.Data;
 namespace project_backend.Migrations
 {
     [DbContext(typeof(CVFitContext))]
-    partial class CVFitContextModelSnapshot : ModelSnapshot
+    [Migration("20221111153417_AddandSeedContactUS")]
+    partial class AddandSeedContactUS
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");

@@ -35,5 +35,16 @@ namespace project_backend.Services
         void DeleteLift(Lift lift);
 
         Task<bool> SaveChangesAsync();
+
+        //for contact us 
+        Task<IEnumerable<ContactUs>> GetProspectiveClients();
+
+        Task<ContactUs?> GetProspectiveClientById(int id);
+
+        Task<bool> ProspectiveExists(int id);
+
+        Task CreateProspectiveClient(ContactUs contactUs);
+
+        void DeleteProspectiveClient(ContactUs contactUs);
     }
 }
