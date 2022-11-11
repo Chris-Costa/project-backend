@@ -20,12 +20,9 @@ namespace project_backend.Services
 
         public async Task<Blog?> GetBlogByID(int blogId)
         {
-            return await _context.Blogs.Include(b => b.Comment)
-                    .Where(b => b.Id == blogId).FirstOrDefaultAsync();
-            
+            return await _context.Blogs.Include(b => b.Comment).Where(b => b.Id == blogId).FirstOrDefaultAsync();
         }
 
-        //bool method to return if blog post exists
         public async Task<bool> BlogExists(int blogId)
         {
             return await _context.Blogs.AnyAsync(b => b.Id == blogId);

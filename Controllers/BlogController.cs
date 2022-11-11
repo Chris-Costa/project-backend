@@ -37,19 +37,18 @@ public class BlogController : ControllerBase
     } 
 
     [HttpPost]
-    public async Task<ActionResult<Blog>> NewBlogPost(BlogCreation post)
+    public async Task<ActionResult<Blog>> CreateBlogPost(BlogCreation post)
     {
-        var blog = _mapper.Map<Entities.Blog>(post);
+        var fblog = _mapper.Map<Entities.Blog>(post);
 
-        await _blogService.CreateBlogPost(blog);
+        await _blogService.CreateBlogPost(fblog);
 
         await _blogService.SaveChangesAsync();
 
-        var postToReturn = _mapper.Map<Models.Blog>(blog);
+        var postToReturn = _mapper.Map<Models.Blog>(fblog);
 
-        return CreatedAtRoute("GetBlog", new {blogId = postToReturn.Id}, postToReturn);
+        return CreatedAtRoute("GetBlog", new {Id = postToReturn.Id}, postToReturn);
     }
-    
 
     //not sure i really wnat this option.  Other users will have comments wiped away
     [HttpDelete("{blogId}")]
@@ -72,6 +71,4 @@ public class BlogController : ControllerBase
 
         return NoContent();
     }
-
-    
 }

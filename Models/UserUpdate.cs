@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace project_backend.Models
 {
-    public class UserCreation
+    public class UserUpdate
     {
         [Required(ErrorMessage = "You should provide a name value.")]
         [MaxLength(50)]

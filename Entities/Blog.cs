@@ -7,7 +7,7 @@ namespace project_backend.Entities
     public class Blog 
     {
         [Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]  //generate new key when blog post is added
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]  //generate new key when blog post is added
         public int Id { get; set; }
         public string? Title { get; set; }
         public string? Author { get; set; }

@@ -14,6 +14,5 @@ namespace project_backend.Entities
         [ForeignKey("BlogId")]
         public Blog? Blog { get; set; }
         public int BlogId { get; set; }
-        
     }
 }

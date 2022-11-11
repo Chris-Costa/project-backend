@@ -20,11 +20,7 @@ namespace project_backend.Services
 
         public async Task<User?> GetUserByID(int userId)
         {
-            
             return await _context.Users.Include(b => b.Workout).Where(b => b.Id == userId).FirstOrDefaultAsync();
-            
-        
-            //return await _context.Users.Where(u => u.Id == userId).FirstOrDefaultAsync();
         }
 
         public async Task<bool> UserExists(int userId)
@@ -32,7 +28,7 @@ namespace project_backend.Services
             return await _context.Users.AnyAsync(u => u.Id == userId);
         }
 
-        public async Task CreateNewUser(User user)
+        public async Task CreateUser(User user)
         {
             _context.Users.Add(user);
         }

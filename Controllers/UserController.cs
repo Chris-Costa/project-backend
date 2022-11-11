@@ -25,7 +25,7 @@ public class UserController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<User>>(userEntities));
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetUser")]
     public async Task<ActionResult<User>> GetUserByID(int id)
     {
         var user = await _userService.GetUserByID(id);
@@ -35,4 +35,57 @@ public class UserController : ControllerBase
         }
         return Ok(_mapper.Map<User>(user));
     } 
+
+    [HttpPost]
+    public async Task<ActionResult<User>> CreateUser(UserCreation user)
+    {
+        var fUser = _mapper.Map<Entities.User>(user);
+
+        await _userService.CreateUser(fUser);
+
+        await _userService.SaveChangesAsync();
+
+        var userToReturn = _mapper.Map<Models.User>(fUser);
+
+        return CreatedAtRoute("GetUser", new {Id = userToReturn.Id}, userToReturn);
+    }
+
+    [HttpDelete("{userId}")]
+    public async Task<ActionResult> DeleteUser(int userId)
+    {
+        if (!await _userService.UserExists(userId))
+        {
+            return NotFound();
+        }
+
+        var userEntity = await _userService.GetUserByID(userId);
+
+        if (userEntity == null)
+        {
+            return NotFound();
+        }
+
+        _userService.DeleteUser(userEntity);
+
+        await _userService.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    [HttpPut("{userId}")]
+    public async Task<ActionResult> UpdateUser(int userId, UserUpdate userUpdate)
+    {
+        if (!await _userService.UserExists(userId))
+        {
+            return NotFound();
+        }
+
+        var userEntity = await _userService.GetUserByID(userId);
+
+        _mapper.Map(userUpdate, userEntity);
+
+        await _userService.SaveChangesAsync();
+
+        return NoContent();
+    }
 }

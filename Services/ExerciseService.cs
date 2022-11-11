@@ -15,7 +15,6 @@ namespace project_backend.Services
 
         public async Task<IEnumerable<Exercise>> GetExercises()
         {
-            //order by used for name currently maybe category later
             return await _context.Exercises.OrderBy(e => e.Name).ToListAsync();
         }
 

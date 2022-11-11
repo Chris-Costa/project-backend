@@ -10,7 +10,7 @@ namespace project_backend.Services
 
         Task<bool> UserExists(int userId);
 
-        Task CreateNewUser(User user);
+        Task CreateUser(User user);
 
         void DeleteUser(User user);
 
