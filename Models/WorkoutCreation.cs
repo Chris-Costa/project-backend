@@ -7,7 +7,5 @@ namespace project_backend.Models
         [Required(ErrorMessage = "You should provide a name value.")]
         [MaxLength(50)]
         public string? Title { get; set; } = string.Empty;
-
-        public ICollection<Lift> Lift { get; set; }
     }
 }

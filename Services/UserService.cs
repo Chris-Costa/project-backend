@@ -41,16 +41,16 @@ namespace project_backend.Services
         //start of methods to deal with workouts
         public async Task<Workout?> GetWorkoutByID(int workoutId)
         {
-            return await _context.Workout.Include(w => w.Lift).Where(w => w.Id == workoutId).FirstOrDefaultAsync();
+            return await _context.Workout.Where(w => w.Id == workoutId).FirstOrDefaultAsync();
         }
         public async Task<IEnumerable<Workout>> GetAllofUsersWorkouts(int userId)
         {
-            return await _context.Workout.Where(u => u.UserId == userId).ToListAsync();
+            return await _context.Workout.Include(w => w.Lift).Where(u => u.UserId == userId).ToListAsync();
         }
 
         public async Task<Workout?> GetSpecificUserWorkout(int userId, int workoutId)
         {
-            return await _context.Workout.Where(u => u.UserId == userId && u.Id == workoutId).FirstOrDefaultAsync();
+            return await _context.Workout.Include(w => w.Lift).Where(u => u.UserId == userId && u.Id == workoutId).FirstOrDefaultAsync();
         }
 
         public async Task PostWorkoutToUser(int userId, Workout workout)
@@ -81,7 +81,7 @@ namespace project_backend.Services
             return await _context.Lift.Where(l => l.WorkoutId == workoutId && l.Id == liftId).FirstOrDefaultAsync();
         }
 
-        public async Task PostLiftToWorkout(int workoutId, int exerciseId, Lift lift)
+        public async Task PostLiftToWorkout(int workoutId, Lift lift)
         {
             var workout = await GetWorkoutByID(workoutId);
 

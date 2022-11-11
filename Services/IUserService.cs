@@ -30,7 +30,7 @@ namespace project_backend.Services
 
         Task<Lift?> GetSpecificWorkoutLift(int workoutId, int liftId);
 
-        Task PostLiftToWorkout(int workouId, int exerciseId, Lift lift);
+        Task PostLiftToWorkout(int workoutId, Lift lift);
 
         void DeleteLift(Lift lift);
 

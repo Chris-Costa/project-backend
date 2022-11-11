@@ -19,7 +19,8 @@ public class LiftController : ControllerBase
         _exerciseService = exerciseService ?? throw new ArgumentNullException(nameof(exerciseService));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
-
+    
+    //not sure if this is useful
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Lift>>> GetAllLiftsOfWorkout(int workoutId)
     {
@@ -48,7 +49,7 @@ public class LiftController : ControllerBase
     } 
 
     [HttpPost]
-    public async Task<ActionResult<Lift>> PostLiftToWorkout(int workoutId, int exerciseId, LiftCreation lift)
+    public async Task<ActionResult<Lift>> AddLift(int workoutId, int exerciseId, LiftCreation lift)
     {
         if (!await _userService.WorkoutExists(workoutId))
         {
@@ -62,7 +63,7 @@ public class LiftController : ControllerBase
 
         var fLift = _mapper.Map<Entities.Lift>(lift);
 
-        await _userService.PostLiftToWorkout(workoutId, exerciseId, fLift);
+        await _userService.PostLiftToWorkout(workoutId, fLift);
         await _userService.SaveChangesAsync();
 
         var liftToReturn = _mapper.Map<Models.Lift>(fLift);
