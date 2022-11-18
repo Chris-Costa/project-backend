@@ -1,46 +1,26 @@
-using project_backend.Models;
+using project_backend.Entities;
+using project_backend.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace project_backend.Services;
-
-public static class BlogService
+namespace project_backend.Services
 {
-    static List<Blog> Blogs { get; }
-    static int nextId = 3;
-    static BlogService()
+    public class BlogService : IBlogService
     {
-        Blogs = new List<Blog>
+        private readonly CVFitContext _context;
+
+        public BlogService(CVFitContext context)
         {
-            new Blog { Id = 1, Title = "Test 1", Author = "Author 1",  Content = "Some Content 1", Avatar = "", Likes = 10/*, Comments = {User = "User 1", Reply = "Some reply 1"}*/ },
-            new Blog { Id = 2, Title = "Test 2", Author = "Author 2", Content = "Some Content 2", Avatar = "", Likes = 5/*, Comments = {User = "User 2", Reply = "Some reply 2"}*/ }
-        };
-    }
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
 
-    public static List<Blog> GetAll() => Blogs;
-    
+        public async Task<IEnumerable<Blog>> GetBlogs()
+        {
+            return await _context.Blogs.OrderBy(b => b.Title).ToListAsync();
+        }
 
-    public static Blog? Get(int id) => Blogs.FirstOrDefault(b => b.Id == id);
-
-    public static void Add(Blog blog)
-    {
-        blog.Id = nextId++;
-        Blogs.Add(blog);
-    }
-
-    public static void Delete(int id)
-    {
-        var blog = Get(id);
-        if(blog is null)
-            return;
-
-        Blogs.Remove(blog);
-    }
-
-    public static void Update(Blog blog)
-    {
-        var index = Blogs.FindIndex(b => b.Id == blog.Id);
-        if(index == -1)
-            return;
-
-        Blogs[index] = blog;
+        public async Task<Blog?> GetBlogByID(int blogId)
+        {
+            return await _context.Blogs.Where(b => b.Id == blogId).FirstOrDefaultAsync();
+        }
     }
 }

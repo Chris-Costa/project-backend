@@ -1,45 +1,27 @@
-using project_backend.Models;
+using project_backend.Entities;
+using project_backend.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace project_backend.Services;
-
-public static class ExerciseService
+namespace project_backend.Services
 {
-    static List<Exercise> Exercises { get; }
-    static int nextId = 3;
-    static ExerciseService()
+    public class ExerciseService : IExerciseService
     {
-        Exercises = new List<Exercise>
+        private readonly CVFitContext _context;
+
+        public ExerciseService(CVFitContext context)
         {
-            new Exercise { Id = 1, Name = "Exercise 1", MuscleGroup = "Chest", Description = "Some Description", RepRange = "8-12", Difficulty = "Hard", ImageURL = "www.someURL.com", VideoURL = "www.someVideo.com"},
-            new Exercise { Id = 2, Name = "Exercise 12", MuscleGroup = "Back", Description = "Some Description", RepRange = "12-15", Difficulty = "Easy", ImageURL = "www.someURL.com", VideoURL = "www.someVideo.com"}
-        };
-    }
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
 
-    public static List<Exercise> GetAll() => Exercises;
+        public async Task<IEnumerable<Exercise>> GetExercises()
+        {
+            //order by used for name currently maybe category later
+            return await _context.Exercises.OrderBy(e => e.Name).ToListAsync();
+        }
 
-    public static Exercise? Get(int id) => Exercises.FirstOrDefault(e => e.Id == id);
-
-    public static void Add(Exercise exercise)
-    {
-        exercise.Id = nextId++;
-        Exercises.Add(exercise);
-    }
-
-    public static void Delete(int id)
-    {
-        var exercise = Get(id);
-        if(exercise is null)
-            return;
-
-        Exercises.Remove(exercise);
-    }
-
-    public static void Update(Exercise exercise)
-    {
-        var index = Exercises.FindIndex(e => e.Id == exercise.Id);
-        if(index == -1)
-            return;
-
-        Exercises[index] = exercise;
+        public async Task<Exercise?> GetExerciseByID(int exerciseId)
+        {
+            return await _context.Exercises.Where(e => e.Id == exerciseId).FirstOrDefaultAsync();
+        }
     }
 }
