@@ -7,6 +7,8 @@ namespace project_backend.Profiles
         public UserProfile()
         {
             CreateMap<Entities.User, Models.User>();
+            CreateMap<Models.UserCreation, Entities.User>();
+            CreateMap<Models.UserUpdate, Entities.User>();
         }
     }
 }

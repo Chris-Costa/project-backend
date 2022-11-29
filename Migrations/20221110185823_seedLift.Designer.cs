@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using project_backend.Data;
 
@@ -10,9 +11,10 @@ using project_backend.Data;
 namespace project_backend.Migrations
 {
     [DbContext(typeof(CVFitContext))]
-    partial class CVFitContextModelSnapshot : ModelSnapshot
+    [Migration("20221110185823_seedLift")]
+    partial class seedLift
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
@@ -126,63 +128,6 @@ namespace project_backend.Migrations
                         });
                 });
 
-            modelBuilder.Entity("project_backend.Entities.ContactUs", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Firstname")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Lastname")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ContactUs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "mGreen234@gmail.com",
-                            Firstname = "Mike",
-                            Lastname = "Green",
-                            Notes = "Some generic message about what they want to get out of a membership"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Email = "sCassel893@gmail.com",
-                            Firstname = "Shannon",
-                            Lastname = "Cassel",
-                            Notes = "Some generic message about what they want to get out of a membership"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Email = "lRice034@gmail.com",
-                            Firstname = "Lexi",
-                            Lastname = "Rice",
-                            Notes = "Some generic message about what they want to get out of a membership"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Email = "tMaderia432@gmail.com",
-                            Firstname = "Tyler",
-                            Lastname = "Maderia",
-                            Notes = "Some generic message about what they want to get out of a membership"
-                        });
-                });
-
             modelBuilder.Entity("project_backend.Entities.Exercise", b =>
                 {
                     b.Property<int>("Id")
@@ -256,8 +201,8 @@ namespace project_backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ExerciseId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("Reps")
                         .HasColumnType("INTEGER");
@@ -273,6 +218,8 @@ namespace project_backend.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ExerciseId");
+
                     b.HasIndex("WorkoutId");
 
                     b.ToTable("Lift");
@@ -281,7 +228,7 @@ namespace project_backend.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Bench",
+                            ExerciseId = 1,
                             Reps = 12,
                             Sets = 4,
                             Weight = 45,
@@ -290,7 +237,7 @@ namespace project_backend.Migrations
                         new
                         {
                             Id = 2,
-                            Name = "Fly's",
+                            ExerciseId = 3,
                             Reps = 12,
                             Sets = 4,
                             Weight = 145,
@@ -299,7 +246,7 @@ namespace project_backend.Migrations
                         new
                         {
                             Id = 3,
-                            Name = "Pushups",
+                            ExerciseId = 2,
                             Reps = 20,
                             Sets = 4,
                             Weight = 0,
@@ -438,11 +385,19 @@ namespace project_backend.Migrations
 
             modelBuilder.Entity("project_backend.Entities.Lift", b =>
                 {
+                    b.HasOne("project_backend.Entities.Exercise", "Exercise")
+                        .WithMany()
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("project_backend.Entities.Workout", "Workout")
                         .WithMany("Lift")
                         .HasForeignKey("WorkoutId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Exercise");
 
                     b.Navigation("Workout");
                 });

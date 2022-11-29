@@ -34,5 +34,5 @@ public class ExerciseController : ControllerBase
             return NotFound();
         }
         return Ok(_mapper.Map<Exercise>(exercise));
-    } 
+    }
 }

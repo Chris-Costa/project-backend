@@ -10,6 +10,10 @@ namespace project_backend.Data
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Comment> Comment { get; set; }
+        public DbSet<Workout> Workout { get; set; }
+        public DbSet<Lift> Lift { get; set; }
+        public DbSet<ContactUs> ContactUs { get; set; }
 
         public string DbPath { get; }
 
@@ -114,12 +118,12 @@ namespace project_backend.Data
                     ImageURL="x",
                     VideoURL="x"
                 });
-            /*
+            
             modelBuilder.Entity<Lift>().HasData(
-                new WorkoutLift()
+                new Lift()
                 {
                     Id=1,
-                    ExerciseId=1,
+                    Name="Bench",
                     WorkoutId=1,
                     Weight=45,
                     Sets=4,
@@ -128,7 +132,7 @@ namespace project_backend.Data
                 new Lift()
                 {
                     Id=2,
-                    ExerciseId=1,
+                    Name="Fly's",
                     WorkoutId=1,
                     Weight=145,
                     Sets=4,
@@ -137,13 +141,13 @@ namespace project_backend.Data
                 new Lift()
                 {
                     Id=3,
-                    ExerciseId=22,
-                    WorkoutId=2,
+                    Name="Pushups",
+                    WorkoutId=3,
                     Weight=0,
                     Sets=4,
                     Reps=20
                 });
-            */
+            
             modelBuilder.Entity<User>().HasData(
                 new User()
                 { 
@@ -215,6 +219,40 @@ namespace project_backend.Data
                     Id=7,
                     UserId=3,
                     Title="Cardio and Abs"
+                });
+
+            modelBuilder.Entity<ContactUs>().HasData(
+                new ContactUs()
+                {
+                    Id=1,
+                    Firstname= "Mike",
+                    Lastname="Green",
+                    Email="mGreen234@gmail.com",
+                    Notes="Some generic message about what they want to get out of a membership"
+                },
+                new ContactUs()
+                {
+                    Id=2,
+                    Firstname="Shannon",
+                    Lastname="Cassel",
+                    Email="sCassel893@gmail.com",
+                    Notes="Some generic message about what they want to get out of a membership"
+                },
+                new ContactUs()
+                {
+                    Id=3,
+                    Firstname="Lexi",
+                    Lastname="Rice",
+                    Email="lRice034@gmail.com",
+                    Notes="Some generic message about what they want to get out of a membership"
+                },
+                new ContactUs()
+                {
+                    Id=4,
+                    Firstname="Tyler",
+                    Lastname="Maderia",
+                    Email="tMaderia432@gmail.com",
+                    Notes="Some generic message about what they want to get out of a membership"
                 });
 
             base.OnModelCreating(modelBuilder);

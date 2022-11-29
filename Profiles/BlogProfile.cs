@@ -7,6 +7,7 @@ namespace project_backend.Profiles
         public BlogProfile()
         {
             CreateMap<Entities.Blog, Models.Blog>();
+            CreateMap<Models.BlogCreation, Entities.Blog>();
         }
     }
 }

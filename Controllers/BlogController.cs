@@ -25,7 +25,7 @@ public class BlogController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<Blog>>(blogEntities));
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetBlog")]
     public async Task<ActionResult<Blog>> GetBlogByID(int id)
     {
         var blog = await _blogService.GetBlogByID(id);
@@ -35,4 +35,40 @@ public class BlogController : ControllerBase
         }
         return Ok(_mapper.Map<Blog>(blog));
     } 
+
+    [HttpPost]
+    public async Task<ActionResult<Blog>> CreateBlogPost(BlogCreation post)
+    {
+        var fblog = _mapper.Map<Entities.Blog>(post);
+
+        await _blogService.CreateBlogPost(fblog);
+
+        await _blogService.SaveChangesAsync();
+
+        var postToReturn = _mapper.Map<Models.Blog>(fblog);
+
+        return CreatedAtRoute("GetBlog", new {Id = postToReturn.Id}, postToReturn);
+    }
+
+    //not sure i really wnat this option.  Other users will have comments wiped away
+    [HttpDelete("{blogId}")]
+    public async Task<ActionResult> DeleteBlog(int blogId)
+    {
+        if (!await _blogService.BlogExists(blogId))
+        {
+            return NotFound();
+        }
+
+        var blogEntity = await _blogService.GetBlogByID(blogId);
+
+        if (blogEntity == null)
+        {
+            return NotFound();
+        }
+
+        _blogService.DeleteBlog(blogEntity);
+        await _blogService.SaveChangesAsync();
+
+        return NoContent();
+    }
 }
