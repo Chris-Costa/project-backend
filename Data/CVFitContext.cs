@@ -88,24 +88,24 @@ namespace project_backend.Data
                 new Exercise()
                 {
                     Id=1,
-                    Name="Pushups",
-                    MuscleGroup="Chest",
-                    Description="Some Descr",
-                    RepRange="10-20",
-                    Difficulty="Easy",
-                    ImageURL="x",
-                    VideoURL="x"
+                    Name="Seated Cable Rows",
+                    MuscleGroup="Back",
+                    Description="Sit on the bench with your knees bent and grasp the cable attachment. It often has a triangle handle, but it may be a bar. Position yourself with your knees slightly bent, so you have to reach to grab the handle with outstretched arms without curling the lower back over. Brace the abdominals, and you're ready to row",
+                    RepRange="8-12",
+                    Difficulty="Intermediate",
+                    ImageURL="assets/images/Row.png",
+                    VideoURL="https://www.youtube.com/embed/sP_4vybjVJs"
                 },
                 new Exercise()
                 {
                     Id=2,
-                    Name="Bench",
-                    MuscleGroup="Chest",
-                    Description="Some Descr",
-                    RepRange="5-10",
-                    Difficulty="Medium",
-                    ImageURL="x",
-                    VideoURL="x"
+                    Name="Lat Pulldowns",
+                    MuscleGroup="Back",
+                    Description="Grasp the bar with a overhand wide grip with an overhand. Pull the bar down until it's approximately level with the chin. Exhale on the downward motion. Squeeze the shoulder blades together while maintaining square shoulders.",
+                    RepRange="8-12",
+                    Difficulty="Beginner",
+                    ImageURL="assets/images/LatPulldown.webp",
+                    VideoURL="https://www.youtube.com/embed/j9jtjL8FhPI"
                 },
                 new Exercise()
                 {

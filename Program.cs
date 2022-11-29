@@ -3,8 +3,17 @@ using project_backend.Services;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy  =>
+                      {
+                          policy.WithOrigins("http://localhost:4200").SetIsOriginAllowedToAllowWildcardSubdomains();
+                      });
+});
 // Add services to the container.
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
@@ -35,5 +44,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.Run();
