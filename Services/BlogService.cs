@@ -15,7 +15,7 @@ namespace project_backend.Services
 
         public async Task<IEnumerable<Blog>> GetBlogs()
         {
-            return await _context.Blogs.OrderBy(b => b.Title).ToListAsync();
+            return await _context.Blogs.Include(b => b.Comment).OrderBy(b => b.Title).ToListAsync();
         }
 
         public async Task<Blog?> GetBlogByID(int blogId)
