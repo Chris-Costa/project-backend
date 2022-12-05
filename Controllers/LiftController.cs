@@ -49,14 +49,9 @@ public class LiftController : ControllerBase
     } 
 
     [HttpPost]
-    public async Task<ActionResult<Lift>> AddLift(int workoutId, int exerciseId, LiftCreation lift)
+    public async Task<ActionResult<Lift>> AddLift(int workoutId, LiftCreation lift)
     {
         if (!await _userService.WorkoutExists(workoutId))
-        {
-            return NotFound();
-        }
-
-        if(!await _exerciseService.ExerciseExists(exerciseId))
         {
             return NotFound();
         }
@@ -68,7 +63,7 @@ public class LiftController : ControllerBase
 
         var liftToReturn = _mapper.Map<Models.Lift>(fLift);
 
-        return CreatedAtRoute("GetLift", new {workoutId = workoutId, exerciseId = exerciseId, liftId = liftToReturn.Id}, liftToReturn);
+        return CreatedAtRoute("GetLift", new {workoutId = workoutId, liftId = liftToReturn.Id}, liftToReturn);
     }
 
     [HttpDelete("liftId")]
