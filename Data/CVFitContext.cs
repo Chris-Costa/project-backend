@@ -350,8 +350,8 @@ namespace project_backend.Data
                     Id=1,
                     Firstname="Linda",
                     Lastname="Martin",
-                    Username="LMartin567",
-                    Avatar="x",
+                    Email="LMartin567",
+                    AzureId="x",
                     WeightGoal=145
                 },
                 new User()
@@ -359,8 +359,8 @@ namespace project_backend.Data
                     Id=2,
                     Firstname="Jack",
                     Lastname="Smith",
-                    Username="JSmith215",
-                    Avatar="x",
+                    Email="JSmith215",
+                    AzureId="x",
                     WeightGoal=175
                 },
                 new User()
@@ -368,8 +368,8 @@ namespace project_backend.Data
                     Id=3,
                     Firstname="Cindy",
                     Lastname="Long",
-                    Username="CLong498",
-                    Avatar="x",
+                    Email="CLong498",
+                    AzureId="x",
                     WeightGoal=115
                 });
 

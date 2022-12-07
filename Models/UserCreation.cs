@@ -12,7 +12,11 @@ namespace project_backend.Models
         public string? Lastname { get; set; }
 
         [MaxLength(50)]
-        public string? Username { get; set; }
+        //public string? Username { get; set; }
+        public string? Email { get; set; }
+
+        [MaxLength(50)]
+        public string? AzureId { get; set; }
 
         [MaxLength(50)]
         public string? Avatar { get; set; } = string.Empty;
