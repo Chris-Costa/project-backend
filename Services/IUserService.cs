@@ -14,6 +14,8 @@ namespace project_backend.Services
 
         void DeleteUser(User user);
 
+        Task<IEnumerable<Workout>> GetWorkouts();
+        
         Task<Workout?> GetWorkoutByID(int workoutId);
 
         Task<IEnumerable<Workout>> GetAllofUsersWorkouts(int userId);

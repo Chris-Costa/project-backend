@@ -15,7 +15,7 @@ namespace project_backend.Services
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            return await _context.Users.OrderBy(u => u.Firstname).ToListAsync();
+            return await _context.Users.Include(u => u.Workout).ThenInclude(w => w.Lift).OrderBy(u => u.Firstname).ToListAsync();
         }
 
         public async Task<User?> GetUserByID(int userId)
@@ -38,6 +38,10 @@ namespace project_backend.Services
             _context.Users.Remove(user);
         }
 
+        public async Task<IEnumerable<Workout>> GetWorkouts()
+        {
+            return await _context.Workout.Include(w => w.Lift).ToListAsync();
+        }
         //start of methods to deal with workouts
         public async Task<Workout?> GetWorkoutByID(int workoutId)
         {
