@@ -9,7 +9,6 @@ namespace project_backend.Data
     {
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Comment> Comment { get; set; }
         public DbSet<Workout> Workout { get; set; }
         public DbSet<Lift> Lift { get; set; }
@@ -343,77 +342,48 @@ namespace project_backend.Data
                     Sets=4,
                     Reps=20
                 });
-            
-            modelBuilder.Entity<User>().HasData(
-                new User()
-                { 
-                    Id=1,
-                    Firstname="Linda",
-                    Lastname="Martin",
-                    Email="LMartin567",
-                    AzureId="x",
-                    WeightGoal=145
-                },
-                new User()
-                {
-                    Id=2,
-                    Firstname="Jack",
-                    Lastname="Smith",
-                    Email="JSmith215",
-                    AzureId="x",
-                    WeightGoal=175
-                },
-                new User()
-                {
-                    Id=3,
-                    Firstname="Cindy",
-                    Lastname="Long",
-                    Email="CLong498",
-                    AzureId="x",
-                    WeightGoal=115
-                });
 
             modelBuilder.Entity<Workout>().HasData(
                 new Workout()
                 {
                     Id=1,
-                    UserId=1,
+                    AzureId="1",
                     Title="Full Body Day"
                 },
                 new Workout()
                 {
                     Id=2,
-                    UserId=1,
+                    AzureId="1",
                     Title="Leg Day"
                 },
                 new Workout()
                 {
                     Id=3,
-                    UserId=2,
+                    AzureId="2",
                     Title="Chest"
                 },
                 new Workout()
                 {
                     Id=4,
-                    UserId=2,
+                    AzureId="2",
                     Title="Armd"
                 },
                 new Workout()
                 {
                     Id=5,
-                    UserId=2,
+                    AzureId="2",
                     Title="Back & Bi's"
                 },
                 new Workout()
                 {
                     Id=6,
-                    UserId=3,
+                    AzureId="3",
                     Title="FullBody"
                 },
                 new Workout()
                 {
                     Id=7,
-                    UserId=3,
+                    AzureId="3",
                     Title="Cardio and Abs"
                 });
 

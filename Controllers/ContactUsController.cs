@@ -26,7 +26,7 @@ public class ContactUsController : ControllerBase
     }
 
     [HttpGet("{id}", Name = "GetProspective")]
-    public async Task<ActionResult<User>> GetProspectiveClientById(int id)
+    public async Task<ActionResult<ContactUs>> GetProspectiveClientById(int id)
     {
         var client = await _userService.GetProspectiveClientById(id);
         if (client == null)

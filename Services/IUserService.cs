@@ -4,25 +4,17 @@ namespace project_backend.Services
 {
     public interface IUserService
     {
-        Task<IEnumerable<User>> GetUsers();
-
-        Task<User?> GetUserByID(int userId);
-
-        Task<bool> UserExists(int userId);
-
-        Task CreateUser(User user);
-
-        void DeleteUser(User user);
+        //Task<bool> UserExists(int userId);
 
         Task<IEnumerable<Workout>> GetWorkouts();
         
         Task<Workout?> GetWorkoutByID(int workoutId);
 
-        Task<IEnumerable<Workout>> GetAllofUsersWorkouts(int userId);
+        Task<IEnumerable<Workout>> GetAllofUsersWorkouts(string userId);
 
-        Task<Workout?> GetSpecificUserWorkout(int userId, int workoutId);
+        Task<Workout?> GetSpecificUserWorkout(string userId, int workoutId);
 
-        Task PostWorkoutToUser(int userId, Workout workout);
+        Task PostWorkoutToUser(Workout workout);
 
         void DeleteWorkout(Workout workout);
 
