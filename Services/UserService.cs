@@ -13,52 +13,35 @@ namespace project_backend.Services
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<IEnumerable<User>> GetUsers()
-        {
-            return await _context.Users.OrderBy(u => u.Firstname).ToListAsync();
-        }
-
-        public async Task<User?> GetUserByID(int userId)
-        {
-            return await _context.Users.Include(b => b.Workout).Where(b => b.Id == userId).FirstOrDefaultAsync();
-        }
-
+        /*
         public async Task<bool> UserExists(int userId)
         {
             return await _context.Users.AnyAsync(u => u.Id == userId);
-        }
+        }*/
 
-        public async Task CreateUser(User user)
+        public async Task<IEnumerable<Workout>> GetWorkouts()
         {
-            _context.Users.Add(user);
+            return await _context.Workout.Include(w => w.Lift).OrderBy(e => e.AzureId).ToListAsync();
         }
-
-        public void DeleteUser(User user)
-        {
-            _context.Users.Remove(user);
-        }
-
-        //start of methods to deal with workouts
+       
         public async Task<Workout?> GetWorkoutByID(int workoutId)
         {
-            return await _context.Workout.Where(w => w.Id == workoutId).FirstOrDefaultAsync();
+            return await _context.Workout.Include(i => i.Lift).Where(w => w.Id == workoutId).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Workout>> GetAllofUsersWorkouts(int userId)
+        public async Task<IEnumerable<Workout>> GetAllofUsersWorkouts(string userId)
         {
-            return await _context.Workout.Include(w => w.Lift).Where(u => u.UserId == userId).ToListAsync();
+            return await _context.Workout.Include(w => w.Lift).Where(u => u.AzureId == userId).ToListAsync();
         }
 
-        public async Task<Workout?> GetSpecificUserWorkout(int userId, int workoutId)
+        public async Task<Workout?> GetSpecificUserWorkout(string userId, int workoutId)
         {
-            return await _context.Workout.Include(w => w.Lift).Where(u => u.UserId == userId && u.Id == workoutId).FirstOrDefaultAsync();
+            return await _context.Workout.Include(w => w.Lift).Where(u => u.AzureId == userId && u.Id == workoutId).FirstOrDefaultAsync();
         }
 
-        public async Task PostWorkoutToUser(int userId, Workout workout)
+        public async Task PostWorkoutToUser(Workout workout)
         {
-            var user = await GetUserByID(userId);
-
-            user.Workout.Add(workout);
+            _context.Workout.Add(workout);
         }
 
         public void DeleteWorkout(Workout workout)

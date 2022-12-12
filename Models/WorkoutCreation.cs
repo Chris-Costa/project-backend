@@ -7,5 +7,7 @@ namespace project_backend.Models
         [Required(ErrorMessage = "You should provide a name value.")]
         [MaxLength(50)]
         public string? Title { get; set; } = string.Empty;
+
+        public string AzureId { get; set; }
     }
 }

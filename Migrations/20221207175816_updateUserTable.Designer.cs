@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using project_backend.Data;
 
@@ -10,9 +11,10 @@ using project_backend.Data;
 namespace project_backend.Migrations
 {
     [DbContext(typeof(CVFitContext))]
-    partial class CVFitContextModelSnapshot : ModelSnapshot
+    [Migration("20221207175816_updateUserTable")]
+    partial class updateUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
@@ -503,20 +505,79 @@ namespace project_backend.Migrations
                         });
                 });
 
+            modelBuilder.Entity("project_backend.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Avatar")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AzureId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Firstname")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Lastname")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("WeightGoal")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AzureId = "x",
+                            Email = "LMartin567",
+                            Firstname = "Linda",
+                            Lastname = "Martin",
+                            WeightGoal = 145
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AzureId = "x",
+                            Email = "JSmith215",
+                            Firstname = "Jack",
+                            Lastname = "Smith",
+                            WeightGoal = 175
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AzureId = "x",
+                            Email = "CLong498",
+                            Firstname = "Cindy",
+                            Lastname = "Long",
+                            WeightGoal = 115
+                        });
+                });
+
             modelBuilder.Entity("project_backend.Entities.Workout", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("AzureId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Workout");
 
@@ -524,44 +585,44 @@ namespace project_backend.Migrations
                         new
                         {
                             Id = 1,
-                            AzureId = "1",
-                            Title = "Full Body Day"
+                            Title = "Full Body Day",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            AzureId = "1",
-                            Title = "Leg Day"
+                            Title = "Leg Day",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 3,
-                            AzureId = "2",
-                            Title = "Chest"
+                            Title = "Chest",
+                            UserId = 2
                         },
                         new
                         {
                             Id = 4,
-                            AzureId = "2",
-                            Title = "Armd"
+                            Title = "Armd",
+                            UserId = 2
                         },
                         new
                         {
                             Id = 5,
-                            AzureId = "2",
-                            Title = "Back & Bi's"
+                            Title = "Back & Bi's",
+                            UserId = 2
                         },
                         new
                         {
                             Id = 6,
-                            AzureId = "3",
-                            Title = "FullBody"
+                            Title = "FullBody",
+                            UserId = 3
                         },
                         new
                         {
                             Id = 7,
-                            AzureId = "3",
-                            Title = "Cardio and Abs"
+                            Title = "Cardio and Abs",
+                            UserId = 3
                         });
                 });
 
@@ -587,9 +648,25 @@ namespace project_backend.Migrations
                     b.Navigation("Workout");
                 });
 
+            modelBuilder.Entity("project_backend.Entities.Workout", b =>
+                {
+                    b.HasOne("project_backend.Entities.User", "User")
+                        .WithMany("Workout")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("project_backend.Entities.Blog", b =>
                 {
                     b.Navigation("Comment");
+                });
+
+            modelBuilder.Entity("project_backend.Entities.User", b =>
+                {
+                    b.Navigation("Workout");
                 });
 
             modelBuilder.Entity("project_backend.Entities.Workout", b =>
