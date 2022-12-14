@@ -67,13 +67,9 @@ public class LiftController : ControllerBase
     }
 
     [HttpDelete("liftId")]
-    public async Task<ActionResult> DeleteLift(int workoutId, int liftId)
+    public async Task<ActionResult> DeleteLift(int liftId)
     {
-        if (!await _userService.WorkoutExists(workoutId))
-        {
-            return NotFound();
-        }
-        var liftEntity = await _userService.GetSpecificWorkoutLift(workoutId, liftId);
+        var liftEntity = await _userService.GetLiftByID(liftId);
 
         if (liftEntity == null)
         {
