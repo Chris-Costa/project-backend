@@ -8,6 +8,8 @@ namespace project_backend.Services
 
         Task<Exercise?> GetExerciseByID(int exerciseId);
 
+        Task<Exercise?> GetExerciseByName(string name);
+
         Task<bool> ExerciseExists(int exerciseId);
     }
 }

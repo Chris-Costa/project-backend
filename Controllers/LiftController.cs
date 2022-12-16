@@ -20,8 +20,14 @@ public class LiftController : ControllerBase
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
     
-    //not sure if this is useful
     [HttpGet]
+    public async Task<ActionResult<IEnumerable<Lift>>> GetAll() 
+    {
+        var liftEntities = await _userService.GetLifts();
+        return Ok(_mapper.Map<IEnumerable<Lift>>(liftEntities));
+    }
+    //not sure if this is useful
+    [HttpGet("{id}")]
     public async Task<ActionResult<IEnumerable<Lift>>> GetAllLiftsOfWorkout(int workoutId)
     {
         if (!await _userService.WorkoutExists(workoutId))
@@ -34,13 +40,9 @@ public class LiftController : ControllerBase
     }
     
     [HttpGet("{liftId}", Name = "GetLift")]
-    public async Task<ActionResult<Lift>> GetSpecificWorkoutLift(int workoutId, int liftId)
+    public async Task<ActionResult<Lift>> GetSpecificWorkoutLift(int liftId)
     {
-        if (!await _userService.WorkoutExists(workoutId))
-        {
-            return NotFound();
-        }
-        var lift = await _userService.GetSpecificWorkoutLift(workoutId, liftId);
+        var lift = await _userService.GetSpecificWorkoutLift(liftId);
         if (lift == null)
         {
             return NotFound();
