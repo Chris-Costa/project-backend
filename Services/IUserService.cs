@@ -24,9 +24,11 @@ namespace project_backend.Services
 
         Task<Lift?> GetLiftByID(int liftId);
 
-        Task<Lift?> GetSpecificWorkoutLift(int workoutId, int liftId);
+        Task<Lift?> GetSpecificWorkoutLift(int liftId);
 
         Task PostLiftToWorkout(int workoutId, Lift lift);
+
+        Task<IEnumerable<Lift>> GetLifts();
 
         Task<bool> LiftExists(int liftId);
 

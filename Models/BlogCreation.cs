@@ -16,5 +16,7 @@ namespace project_backend.Models
 
         [MaxLength(50)]
         public string? Avatar { get; set; } = string.Empty;
+
+        public int? Category { get; set; }
     }
 }

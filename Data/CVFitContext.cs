@@ -32,7 +32,7 @@ namespace project_backend.Data
                     Author="Tommy Hamilton",
                     Content="Does anyone have suggestions for apps to track my macro intakes.  Why do you recommend?",
                     Avatar="./assets/images/ava1-modified.png",
-                    Likes=5
+                    Category=1
                 },
                 new Blog()
                 {
@@ -41,7 +41,7 @@ namespace project_backend.Data
                     Author="Gina Smith",
                     Content="When chest pressing I can only feel tension in my biceps and sholders.  Any tips to engage chest and triceps?",
                     Avatar="./assets/images/ava2-modified.png",
-                    Likes=2
+                    Category=2
                 },
                 new Blog()
                 {
@@ -50,7 +50,7 @@ namespace project_backend.Data
                     Author="Mike Glennon",
                     Content="What type of cardio do people prefer.  Looking to lose weight fast and have a good sweat.",
                     Avatar="./assets/images/ava3-modified.png",
-                    Likes=12
+                    Category=2
                 },
                 new Blog()
                 {
@@ -59,7 +59,7 @@ namespace project_backend.Data
                     Author="Jim Fisher",
                     Content="I've been waking up extremely sore recently and think its time to start prioritizing recovery.  Any tips and tricks??",
                     Avatar="./assets/images/ava4-modified.png",
-                    Likes=9
+                    Category=3
                 });
 
             modelBuilder.Entity<Comment>().HasData(

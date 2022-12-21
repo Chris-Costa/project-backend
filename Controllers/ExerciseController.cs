@@ -35,4 +35,15 @@ public class ExerciseController : ControllerBase
         }
         return Ok(_mapper.Map<Exercise>(exercise));
     }
+
+    [HttpGet("name")]
+    public async Task<ActionResult<Exercise>> GetExerciseByName(string name)
+    {
+        var exercise = await _exerciseService.GetExerciseByName(name);
+        if (exercise == null)
+        {
+            return NotFound();
+        }
+        return Ok(_mapper.Map<Exercise>(exercise));
+    }
 }
