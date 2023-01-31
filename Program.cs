@@ -3,8 +3,11 @@ using project_backend.Services;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 
+
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("CVFit") ?? "Data Source=CVFit.db";
 
 builder.Services.AddCors(options =>
 {
@@ -28,9 +31,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 /*var connectionString = builder.Configuration.GetValue<string>("ConnectionStrings:CVFitDBConnectionString")*/
-
-builder.Services.AddDbContext<CVFitContext>(
-    dbContextOptions => dbContextOptions.UseSqlite(builder.Configuration.GetValue<string>("ConnectionStrings:CVFitDBConnectionString")));
+builder.Services.AddSqlite<CVFitContext>(connectionString);
+//builder.Services.AddDbContext<CVFitContext>(dbContextOptions => dbContextOptions.UseSqlite(builder.Configuration.GetValue<string>("ConnectionStrings:CVFitDBConnectionString")));
 
 var app = builder.Build();
 
