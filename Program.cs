@@ -27,7 +27,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-//var connectionString = builder.Configuration.GetValue<string>("ConnectionStrings:CVFitDBConnectionString")
+/*var connectionString = builder.Configuration.GetValue<string>("ConnectionStrings:CVFitDBConnectionString")*/
 
 builder.Services.AddDbContext<CVFitContext>(
     dbContextOptions => dbContextOptions.UseSqlite(builder.Configuration.GetValue<string>("ConnectionStrings:CVFitDBConnectionString")));
