@@ -11,12 +11,24 @@ var connectionString = builder.Configuration.GetConnectionString("CVFit") ?? "Da
 
 builder.Services.AddCors(options =>
 {
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("*");
+            policy.WithMethods("GET", "POST", "OPTIONS", "PUT", "DELETE");
+            policy.WithHeaders("Content-Type");
+        });
+});
+/*
+builder.Services.AddCors(options =>
+{
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy  =>
                       {
                           policy.WithOrigins("http://localhost:4200", "https://localhost:7018").AllowAnyMethod().AllowAnyHeader();
                       });
 });
+*/
 // Add services to the container.
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
