@@ -48,6 +48,8 @@ builder.Services.AddSqlite<CVFitContext>(connectionString);
 
 var app = builder.Build();
 
+app.UseCors();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -60,7 +62,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseCors(MyAllowSpecificOrigins);
 
 app.Run();
