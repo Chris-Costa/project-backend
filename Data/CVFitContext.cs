@@ -7,6 +7,10 @@ namespace project_backend.Data
 {
     public class CVFitContext : DbContext
     {
+        public CVFitContext(DbContextOptions<CVFitContext> options)
+            :base(options)
+        { }
+        
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Comment> Comment { get; set; }
@@ -16,11 +20,9 @@ namespace project_backend.Data
 
         public string DbPath { get; }
 
-        public CVFitContext(DbContextOptions<CVFitContext> options)
-            :base(options)
-        {
+        
 
-        }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
