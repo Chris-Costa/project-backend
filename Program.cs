@@ -6,6 +6,19 @@ using AutoMapper;
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = builder.Configuration.GetConnectionString("CVFit") ?? "Data Source=CVFit.db";
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("*");
+            policy.WithMethods("GET", "POST", "OPTIONS", "PUT", "DELETE");
+            policy.WithHeaders("Origin", "Authorization", "Content-Type");
+        });
+});
+/*
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -14,6 +27,7 @@ builder.Services.AddCors(options =>
                           policy.WithOrigins("http://localhost:4200", "https://localhost:7018").AllowAnyMethod().AllowAnyHeader();
                       });
 });
+*/
 // Add services to the container.
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
@@ -27,10 +41,15 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddSqlite<CVFitContext>(connectionString);
+
+/*
 builder.Services.AddDbContext<CVFitContext>(
     dbContextOptions => dbContextOptions.UseSqlite(builder.Configuration["ConnectionStrings:CVFitDBConnectionString"]));
-
+*/
 var app = builder.Build();
+
+app.UseCors();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -44,7 +63,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseCors(MyAllowSpecificOrigins);
 
 app.Run();
