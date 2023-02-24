@@ -2,6 +2,16 @@ using project_backend.Data;
 using project_backend.Services;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using System;
+using System.IO;
+
+// Retrieve the connection string for use with the application. 
+string connectionString = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING");
+
+// Create a BlobServiceClient object 
+var blobServiceClient = new BlobServiceClient(connectionString);
 
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
